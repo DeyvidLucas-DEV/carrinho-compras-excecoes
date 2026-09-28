@@ -1,4 +1,10 @@
 public class Main {
+
+    public static void finalizarPedido(ShoppingCart cart, double saldo) throws SaldoInsuficienteException {
+        System.out.println("Itens no carrinho: " + cart.getProdutos().size());
+        cart.checkout(saldo);
+    }
+
     public static void main(String[] args) {
         Product notebook = new Product("Notebook", 3500.0, 5);
         Product mouse = new Product("Mouse", 150.0, 10);
@@ -13,13 +19,17 @@ public class Main {
             cart.addItem(teclado);
         } catch (ProdutoIndisponivelException e) {
             System.out.println("Erro: " + e.getMessage());
+        } finally {
+            System.out.println("Total atual do carrinho: R$" + cart.getTotal());
         }
 
         System.out.println("\n--- Finalizando a compra ---");
         try {
-            cart.checkout(2000.0);
+            finalizarPedido(cart, 2000.0);
         } catch (SaldoInsuficienteException e) {
             System.out.println("Erro: " + e.getMessage());
+        } finally {
+            System.out.println("Passei pelo try ou pelo catch");
         }
 
         System.out.println("\n--- Pegadinha: catch só com o tipo base ---");
@@ -37,6 +47,8 @@ public class Main {
             System.out.println("Produto: " + e.getMessage());
         } catch (SaldoInsuficienteException e) {
             System.out.println("Saldo: " + e.getMessage());
+        } finally {
+            System.out.println("Fim do atendimento");
         }
     }
 }

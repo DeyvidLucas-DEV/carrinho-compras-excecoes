@@ -3,7 +3,8 @@
 Aluno: Deyvid Lucas da Cunha Amorim
 RGM: 34040722
 
-Disciplina: Programação Orientada a Objetos (Herança e Exceções)
+Disciplina: Paradigmas de Linguagens de Programação
+Tema: Herança e Exceções
 
 ## Classes
 
@@ -13,6 +14,13 @@ Disciplina: Programação Orientada a Objetos (Herança e Exceções)
 - `Product`
 - `ShoppingCart`
 - `Main`
+
+## O que foi usado
+
+- Exceções checadas: as três exceções herdam de `Exception`, então precisam ser declaradas com `throws`.
+- `addItem()` e `checkout()` declaram no cabeçalho a exceção que podem lançar e usam `throw` quando detectam o erro.
+- `finalizarPedido()` na `Main` chama `checkout()` e por isso também declara `throws SaldoInsuficienteException`, mesmo sem ter `throw` no corpo. A exceção é propagada até o `main`, onde é tratada.
+- Blocos `try`, `catch` e `finally` no `main`.
 
 ## Como executar
 
